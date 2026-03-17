@@ -1,0 +1,28 @@
+Job started: Mon Mar 16 01:38:41 PM MDT 2026
+Running on node: dtn05.chpc.utah.edu
+============================================================
+  CAMELS AORC Hourly Forcing Download
+============================================================
+  Basin CSVs  : /uufs/chpc.utah.edu/common/home/johnsonrc-group1/CAMELS_US/hourly/aorc_hourly
+  Tar cache   : /uufs/chpc.utah.edu/common/home/johnsonrc-group1/CAMELS_US/hourly/aorc_hourly/tar_downloads
+  Resource    : https://www.hydroshare.org/resource/c738c05278a34bc9848dd14d61cffab9/
+
+Querying HydroShare for file list ...
+  Found 45 water year archives (1980-2024)
+
+  Already downloaded : 0 / 45 archives
+  Remaining          : 45 archives
+
+
+Extracting archives ...
+
+Extraction complete.
+Cleaning up tar files ...
+Done.
+
+============================================================
+  ALL DONE
+============================================================
+  Basin CSV files  : 30015
+  Location         : /uufs/chpc.utah.edu/common/home/johnsonrc-group1/CAMELS_US/hourly/aorc_hourly
+Job finished: Mon Mar 16 01:44:27 PM MDT 2026

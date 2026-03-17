@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/data/scripts/aorc_download.py", line 93, in <module>
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: No basin files found. The resource may be private or the ID may have changed. Check: https://www.hydroshare.org/resource/c738c05278a34bc9848dd14d61cffab9/
