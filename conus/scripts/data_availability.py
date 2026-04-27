@@ -4,7 +4,7 @@ import time
 import os
 
 CAMELS_DIR = "/uufs/chpc.utah.edu/common/home/u1566670/civil-group1/CAMELS"
-OUTPUT_FILE = "/uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/alaska/camels_temperature_availability_hourly.csv"
+OUTPUT_FILE = "/uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/camels_temperature_availability_hourly.csv"
 
 MIN_YEARS = 4.0
 MAX_PCT_MISSING = 10.0

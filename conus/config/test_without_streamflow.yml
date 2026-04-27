@@ -1,0 +1,92 @@
+experiment_name: caravan_snow_global_scenario1
+run_dir: 
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/results/test_with_streamflow
+train_basin_file: 
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.csv
+validation_basin_file: 
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.csv
+test_basin_file: 
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.csv
+
+train_start_date: '01/01/2020'
+train_end_date: '31/12/2022'
+validation_start_date: '01/01/2023'
+validation_end_date: '31/12/2023'
+test_start_date: '01/01/2024'
+test_end_date: '30/09/2024'
+
+dataset: generic
+data_dir: /uufs/chpc.utah.edu/common/home/johnsonrc-group1/hourly_streamtemp/hourly
+model: cudalstm
+head: regression
+output_activation: linear
+
+hidden_size: 64
+initial_forget_bias: 3
+output_dropout: 0.4
+
+optimizer: Adam
+loss: MSE
+learning_rate:
+  0: 1e-3
+  3: 5e-4
+batch_size: 256
+epochs: 5
+clip_gradient_norm: 1
+validate_every: 1
+validate_n_random_basins: 10
+metrics:
+  - NSE
+  - KGE
+  - RMSE
+ 
+use_frequencies:
+  - 1H
+seq_length:
+  1H: 168
+predict_last_n:
+  1H: 1
+target_variables:
+  - stream_temperature
+
+dynamic_inputs:
+  - temperature_2m
+  - dewpoint_temperature_2m
+  - surface_pressure
+  - surface_net_solar_radiation
+  - surface_net_thermal_radiation
+  - u_component_of_wind_10m
+  - v_component_of_wind_10m
+  - total_precipitation
+  - snow_depth_water_equivalent
+  - potential_evaporation
+  - volumetric_soil_water_layer_1
+  - volumetric_soil_water_layer_2
+  - volumetric_soil_water_layer_3
+  - volumetric_soil_water_layer_4
+  #- discharge        # <<< the only difference vs. smoke_no_q
+ 
+static_attributes:
+  - elev_mean
+  - slope_mean
+  - area_gages2
+  - frac_forest
+  - frac_snow
+  - p_mean
+  - pet_mean
+  - aridity
+  - soil_depth_statsgo
+  - soil_porosity
+  - soil_conductivity
+  - sand_frac
+  - clay_frac
+  - silt_frac
+ # - baseflow_index
+ # - q_mean
+
+device: cuda:0
+num_workers: 4
+seed: 42
+log_interval: 10
+log_tensorboard: True
+save_validation_results: True
