@@ -2,11 +2,11 @@ experiment_name: caravan_snow_global_scenario1
 run_dir: 
   /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/results/test_with_streamflow
 train_basin_file: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.csv
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.txt
 validation_basin_file: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.csv
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.txt
 test_basin_file: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.csv
+  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.txt
 
 train_start_date: '01/01/2020'
 train_end_date: '31/12/2022'

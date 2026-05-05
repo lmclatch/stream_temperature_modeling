@@ -9,6 +9,11 @@ __pycache__/
 *.err
 *.out
 *.sh
+*.pt
+*.png
+*.p
+*.log
+*.sbatch
 
 # Distribution / packaging
 .Python
