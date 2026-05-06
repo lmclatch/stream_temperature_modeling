@@ -1,0 +1,96 @@
+experiment_name: streamtemp_with_q_fold1
+run_dir: /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/results/kfold_with_q/fold1
+train_basin_file: /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/data/folds/fold1_withQ_train.txt
+validation_basin_file: /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/data/folds/fold1_withQ_train.txt
+test_basin_file: /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/data/folds/fold1_withQ_test.txt
+train_start_date: 01/01/2013
+train_end_date: 31/12/2022
+validation_start_date: 01/01/2023
+validation_end_date: 31/12/2023
+test_start_date: 01/01/2024
+test_end_date: 30/09/2024
+dataset: generic
+data_dir: /uufs/chpc.utah.edu/common/home/johnsonrc-group1/hourly_streamtemp/nh_data
+model: cudalstm
+head: regression
+output_activation: linear
+hidden_size: 64
+initial_forget_bias: 3
+output_dropout: 0.4
+optimizer: Adam
+loss: MSE
+learning_rate:
+  0: 1e-3
+  10: 5e-4
+  20: 1e-4
+batch_size: 256
+epochs: 30
+clip_gradient_norm: 1
+validate_every: 1
+validate_n_random_basins: 0
+metrics:
+- NSE
+- KGE
+- RMSE
+use_frequencies:
+- 1H
+seq_length:
+  1H: 168
+predict_last_n:
+  1H: 1
+target_variables:
+- stream_temperature
+dynamic_inputs:
+- temperature_2m
+- dewpoint_temperature_2m
+- surface_pressure
+- surface_net_solar_radiation
+- surface_net_thermal_radiation
+- u_component_of_wind_10m
+- v_component_of_wind_10m
+- total_precipitation
+- snow_depth_water_equivalent
+- potential_evaporation
+- volumetric_soil_water_layer_1
+- volumetric_soil_water_layer_2
+- volumetric_soil_water_layer_3
+- volumetric_soil_water_layer_4
+- discharge
+static_attributes:
+- gauge_lat
+- elev_mean
+- slope_mean
+- area_gages2
+- frac_forest
+- lai_max
+- lai_diff
+- gvf_max
+- gvf_diff
+- p_mean
+- pet_mean
+- aridity
+- frac_snow
+- soil_depth_pelletier
+- soil_depth_statsgo
+- soil_porosity
+- soil_conductivity
+- max_water_content
+- sand_frac
+- clay_frac
+- organic_frac
+- geol_porostiy
+- geol_permeability
+- carbonate_rocks_frac
+- glim_1st_class_frac
+- baseflow_index
+- q_mean
+- q5
+- runoff_ratio
+- low_q_freq
+- hfd_mean
+device: cuda:0
+num_workers: 4
+seed: 42
+log_interval: 10
+log_tensorboard: true
+save_validation_results: true

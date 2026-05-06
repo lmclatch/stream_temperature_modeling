@@ -1,0 +1,182 @@
+attribute_means:
+  area_gages2: 788.122891566265
+  aridity: 0.8177585885369787
+  carbonate_rocks_frac: 0.07079447592950197
+  clay_frac: 17.355982872909557
+  elev_mean: 988.2189156626504
+  frac_forest: 0.8276746987951807
+  frac_snow: 0.27142144067628965
+  gauge_lat: 41.258972891566266
+  geol_permeability: -13.727255421686747
+  geol_porostiy: 0.1204313253012048
+  glim_1st_class_frac: 0.7799414322179999
+  gvf_diff: 0.31400079648160756
+  gvf_max: 0.764358665757452
+  lai_diff: 2.6838393237310108
+  lai_max: 3.600817555447204
+  max_water_content: 0.4814723326133319
+  organic_frac: 0.61962833208261
+  p_mean: 4.115613270329779
+  pet_mean: 2.5801828546217718
+  sand_frac: 37.800489409122136
+  slope_mean: 75.11015289156627
+  soil_conductivity: 1.8988854106059507
+  soil_depth_pelletier: 6.117993989972265
+  soil_depth_statsgo: 1.2338237458055026
+  soil_porosity: 0.4402420805417816
+attribute_stds:
+  area_gages2: 1953.4848828942634
+  aridity: 0.632224277347007
+  carbonate_rocks_frac: 0.18855135727498284
+  clay_frac: 9.458227473409183
+  elev_mean: 825.817410646481
+  frac_forest: 0.2646732453253761
+  frac_snow: 0.22308972419455889
+  gauge_lat: 4.9347421351817236
+  geol_permeability: 1.0974724904883872
+  geol_porostiy: 0.06084792103731747
+  glim_1st_class_frac: 0.20841211630108403
+  gvf_diff: 0.1478809028586719
+  gvf_max: 0.16683529774385736
+  lai_diff: 1.346592654033294
+  lai_max: 1.4776942597299205
+  max_water_content: 0.1451215260570023
+  organic_frac: 3.6650525586005194
+  p_mean: 1.8513715565918734
+  pet_mean: 0.4951684151166468
+  sand_frac: 13.949111345811305
+  slope_mean: 54.76059917659294
+  soil_conductivity: 1.5071250206388538
+  soil_depth_pelletier: 12.87286604202923
+  soil_depth_statsgo: 0.275832879181158
+  soil_porosity: 0.019547132042040123
+xarray_feature_scale:
+  coords: {}
+  attrs: {}
+  dims: {}
+  data_vars:
+    dewpoint_temperature_2m:
+      dims: []
+      attrs: {}
+      data: 14.170757293701172
+    potential_evaporation:
+      dims: []
+      attrs: {}
+      data: 0.0008248987724073231
+    snow_depth_water_equivalent:
+      dims: []
+      attrs: {}
+      data: 0.14017623662948608
+    stream_temperature:
+      dims: []
+      attrs: {}
+      data: 7.302506446838379
+    surface_net_solar_radiation:
+      dims: []
+      attrs: {}
+      data: 787180.875
+    surface_net_thermal_radiation:
+      dims: []
+      attrs: {}
+      data: 133662.765625
+    surface_pressure:
+      dims: []
+      attrs: {}
+      data: 9218.5986328125
+    temperature_2m:
+      dims: []
+      attrs: {}
+      data: 16.553550720214844
+    total_precipitation:
+      dims: []
+      attrs: {}
+      data: 0.0004838028980884701
+    u_component_of_wind_10m:
+      dims: []
+      attrs: {}
+      data: 1.5764095783233643
+    v_component_of_wind_10m:
+      dims: []
+      attrs: {}
+      data: 1.589798927307129
+    volumetric_soil_water_layer_1:
+      dims: []
+      attrs: {}
+      data: 0.0888991579413414
+    volumetric_soil_water_layer_2:
+      dims: []
+      attrs: {}
+      data: 0.08319766074419022
+    volumetric_soil_water_layer_3:
+      dims: []
+      attrs: {}
+      data: 0.07879437506198883
+    volumetric_soil_water_layer_4:
+      dims: []
+      attrs: {}
+      data: 0.0687718391418457
+xarray_feature_center:
+  coords: {}
+  attrs: {}
+  dims: {}
+  data_vars:
+    dewpoint_temperature_2m:
+      dims: []
+      attrs: {}
+      data: 266.14166259765625
+    potential_evaporation:
+      dims: []
+      attrs: {}
+      data: -0.0005604468169622123
+    snow_depth_water_equivalent:
+      dims: []
+      attrs: {}
+      data: 0.052951015532016754
+    stream_temperature:
+      dims: []
+      attrs: {}
+      data: 10.469626426696777
+    surface_net_solar_radiation:
+      dims: []
+      attrs: {}
+      data: 531954.625
+    surface_net_thermal_radiation:
+      dims: []
+      attrs: {}
+      data: -216932.859375
+    surface_pressure:
+      dims: []
+      attrs: {}
+      data: 86814.6328125
+    temperature_2m:
+      dims: []
+      attrs: {}
+      data: 269.50933837890625
+    total_precipitation:
+      dims: []
+      attrs: {}
+      data: 0.00015004642773419619
+    u_component_of_wind_10m:
+      dims: []
+      attrs: {}
+      data: 0.4469943344593048
+    v_component_of_wind_10m:
+      dims: []
+      attrs: {}
+      data: 0.2625337839126587
+    volumetric_soil_water_layer_1:
+      dims: []
+      attrs: {}
+      data: 0.3398704528808594
+    volumetric_soil_water_layer_2:
+      dims: []
+      attrs: {}
+      data: 0.3418949246406555
+    volumetric_soil_water_layer_3:
+      dims: []
+      attrs: {}
+      data: 0.3375556468963623
+    volumetric_soil_water_layer_4:
+      dims: []
+      attrs: {}
+      data: 0.377939909696579

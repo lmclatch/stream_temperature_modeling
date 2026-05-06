@@ -1,14 +1,28 @@
-experiment_name: caravan_snow_global_scenario1
-run_dir: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/results/test_with_streamflow
-train_basin_file: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.txt
-validation_basin_file: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.txt
-test_basin_file: 
-  /uufs/chpc.utah.edu/common/home/hydroinformatics/stream_temperature_modeling/conus/data/conus_temperature_basins.txt
+# =============================================================================
+# Hourly stream temperature LSTM — WITHOUT observed Q as a dynamic input
+# v2: 83 basins (T-clean), train 2013-2022 (10 yr), val 2023, test 2024 Q1-Q3
+#     30 epochs with LR decay, dropout 0.4
+#
+# Companion to with_q_v2.yml — same architecture, hyperparameters, statics,
+# and split. The only differences:
+#   1. dynamic_inputs excludes `discharge` (14 ERA5 vars instead of 15)
+#   2. Basin list is basins_noQ.txt (83 basins; 12147500 included since no-Q
+#      model doesn't need its missing Q observations)
+#   3. static_attributes excludes 6 streamflow signatures (24 statics, not 30)
+# =============================================================================
 
-train_start_date: '01/01/2020'
+experiment_name: streamtemp_no_q_v2
+run_dir:
+  /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/results/no_streamflow_v2
+
+train_basin_file:
+  /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/data/basins_noQ.txt
+validation_basin_file:
+  /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/data/basins_noQ.txt
+test_basin_file:
+  /uufs/chpc.utah.edu/common/home/u1566670/hydroinformatics/stream_temperature_modeling/conus/data/basins_noQ.txt
+
+train_start_date: '01/01/2013'
 train_end_date: '31/12/2022'
 validation_start_date: '01/01/2023'
 validation_end_date: '31/12/2023'
@@ -16,7 +30,8 @@ test_start_date: '01/01/2024'
 test_end_date: '30/09/2024'
 
 dataset: generic
-data_dir: /uufs/chpc.utah.edu/common/home/johnsonrc-group1/hourly_streamtemp/hourly
+data_dir: /uufs/chpc.utah.edu/common/home/johnsonrc-group1/hourly_streamtemp/nh_data
+
 model: cudalstm
 head: regression
 output_activation: linear
@@ -27,19 +42,21 @@ output_dropout: 0.4
 
 optimizer: Adam
 loss: MSE
+# Step-decay LR matching with_q_v2.yml
 learning_rate:
   0: 1e-3
-  3: 5e-4
+  10: 5e-4
+  20: 1e-4
 batch_size: 256
-epochs: 5
+epochs: 30
 clip_gradient_norm: 1
 validate_every: 1
-validate_n_random_basins: 10
+validate_n_random_basins: 0  # 0 = all basins (matches with-Q for fair comparison)
 metrics:
   - NSE
   - KGE
   - RMSE
- 
+
 use_frequencies:
   - 1H
 seq_length:
@@ -49,6 +66,7 @@ predict_last_n:
 target_variables:
   - stream_temperature
 
+# 14 ERA5 vars only — no discharge
 dynamic_inputs:
   - temperature_2m
   - dewpoint_temperature_2m
@@ -64,25 +82,46 @@ dynamic_inputs:
   - volumetric_soil_water_layer_2
   - volumetric_soil_water_layer_3
   - volumetric_soil_water_layer_4
-  #- discharge        # <<< the only difference vs. smoke_no_q
- 
+
+# 30 static attributes — must match with_q_v2.yml exactly for fair comparison
 static_attributes:
+  # location & geometry
+  - gauge_lat
   - elev_mean
   - slope_mean
   - area_gages2
+  # canopy / shading
   - frac_forest
-  - frac_snow
+  - lai_max
+  - lai_diff
+  - gvf_max
+  - gvf_diff
+  # climate
   - p_mean
   - pet_mean
   - aridity
+  - frac_snow
+  # soil
+  - soil_depth_pelletier
   - soil_depth_statsgo
   - soil_porosity
   - soil_conductivity
+  - max_water_content
   - sand_frac
   - clay_frac
-  - silt_frac
- # - baseflow_index
- # - q_mean
+  - organic_frac
+  # geology / groundwater
+  - geol_porostiy        # sic — typo is in CAMELS itself
+  - geol_permeability
+  - carbonate_rocks_frac
+  - glim_1st_class_frac
+  # streamflow signatures (groundwater proxies)
+  # - baseflow_index
+  # - q_mean
+  # - q5
+  # - runoff_ratio
+  # - low_q_freq
+  # - hfd_mean
 
 device: cuda:0
 num_workers: 4
